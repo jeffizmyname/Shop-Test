@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\add.svg" />
+    <None Remove="Assets\close.svg" />
+    <None Remove="Assets\search.svg" />
+    <None Remove="close.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GridExtra" Version="0.4.0" />
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpVectors" Version="1.8.4" />
+    <PackageReference Include="Svg.Skia" Version="1.0.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\add.svg" />
+    <Resource Include="Assets\close.svg" />
+    <Resource Include="Assets\search.svg" />
+    <Resource Include="close.svg" />
+  </ItemGroup>
+
+</Project>
