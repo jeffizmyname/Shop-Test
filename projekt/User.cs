@@ -12,6 +12,19 @@ namespace projekt
         public String Nazwisko { get; set; }
         public String Login { get; set; }
         public String haslo { get; set; }
+
+        private List<Product> ShoppingCart = new List<Product>();
+
+        public void addProduct(Product product)
+        {
+            ShoppingCart.Add(product);
+        }
+
+        public void removeProduct(Product product)
+        {
+            ShoppingCart.Remove(product);
+        }
+        public List<Product> getShoppingCart() { return ShoppingCart; }
        
     }
 }

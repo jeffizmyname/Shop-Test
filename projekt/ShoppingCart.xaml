@@ -1,4 +1,4 @@
-﻿<Window x:Class="projekt.shop"
+﻿<Window x:Class="projekt.ShoppingCart"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:projekt"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="shop" Height="800" Width="1350"
+        Title="shoppingCart" Height="800" Width="1350"
         MinWidth="428"
         MinHeight="700"
         WindowStyle="None"
@@ -72,14 +72,15 @@
                 BorderBrush="#36303b"
                 BorderThickness="5"
                 CornerRadius="8,8,8,8">
-            <Grid>
 
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-                <!-- Top Bar -->
+                
+                
+                <!-- Top -->
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -95,99 +96,69 @@
                             Grid.Column="1"
                             Panel.ZIndex="10"
                             MouseLeftButtonDown="TopBorder_OnMouseLeftButtonDown"/>
-                    <TextBlock FontSize="35" 
-                               TextAlignment="Center" 
-                               VerticalAlignment="Center"
-                               Grid.Column="1" 
-                               Panel.ZIndex="1"
-                               Foreground="#FF87868A" FontFamily="Bahnschrift SemiBold"
-                               >Sklep</TextBlock>
-                    
-                    <Button x:Name="ShoppingCartBtn" 
-                            Style="{StaticResource btnHover}" 
-                            Grid.Column="2" 
-                            Background="Transparent" 
-                            Width="auto" 
-                            BorderBrush="Transparent"
-                            Click="ShoppingCartBtn_Click"
-                            >
-                        <svgc:SvgViewbox Source="/Assets/basket.svg" Width="40" Height="40"/>
+
+                    <Button x:Name="Back" Style="{StaticResource btnHover}" Grid.Column="2" Background="Transparent" Width="auto" BorderBrush="Transparent" Foreground="#F7BD2121" Click="Back_Click">
+                        <svgc:SvgViewbox Source="/Assets/back.svg" Width="35" Height="35"/>
                     </Button>
-                    
-                    <Button x:Name="Close" 
-                            Style="{StaticResource btnHover}" 
-                            Grid.Column="3" 
-                            Background="Transparent" 
-                            Width="auto" 
-                            BorderBrush="Transparent"  
-                            Click="Close_Click">
+
+                    <Button x:Name="Close" Style="{StaticResource btnHover}" Grid.Column="3" Background="Transparent" Width="auto" BorderBrush="Transparent" Foreground="#F7BD2121" Click="Close_Click">
                         <svgc:SvgViewbox Source="/Assets/close.svg" Width="30" Height="30"/>
                     </Button>
                 </Grid>
-
-                <!-- Shop -->
+                
+                <!-- Main -->
                 <Grid Grid.Row="1">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="9*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- Filter -->
-                    <Grid Grid.Row="0" Margin="10, 0, 10, 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBox Name="wrapText">
-                            <TextBox.Template>
-                                <ControlTemplate TargetType="{x:Type TextBox}">
-                                    <Border 
-                                        Grid.Column="0" 
-                                        Margin="10, 10, 10, 10"
-                                        Background="#17151a" 
-                                        CornerRadius="15">
-                                        <Grid>
-                                            <svgc:SvgViewbox Source="/Assets/search.svg"
-                                                             Width="30" Height="30" 
-                                                             HorizontalAlignment="Left" 
-                                                             Margin="10, 0, 10, 0"
-                                                             Panel.ZIndex="10"/>
-                                            <TextBox Background="Transparent" 
-                                                     BorderBrush="Transparent"  
-                                                     Padding="45, 0, 0, 0" 
-                                                     VerticalAlignment="Center" 
-                                                     FontSize="20"
-                                                     Foreground="#B0927F"
-                                                     Style="{StaticResource noStyle}"
-                                                     Panel.ZIndex="9"
-                                                     CaretBrush="#B0927F"
-                                                     Name="searchQ"
-                                                     TextChanged="searchQ_TextChanged"
-                                                     />
-                                        </Grid>
-                                    </Border>
-                                </ControlTemplate>
-                            </TextBox.Template>
-                        </TextBox>
-                    </Grid>
-
-                    <!-- Main -->
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-                        <Grid Margin="10, 0, 10, 0" x:Name="productsGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Items Cart -->
+                    <Border 
+                        CornerRadius="15" 
+                        BorderBrush="Red" 
+                        BorderThickness="1" 
+                        Background="Transparent"
+                        Margin="20, 20, 0, 20">
+                        <Grid>
+                            <Border  Name="mask" Background="Transparent" CornerRadius="20" Panel.ZIndex="9"/>
+                            <ScrollViewer  Grid.Column="0" VerticalScrollBarVisibility="Hidden">
+                                <ScrollViewer.OpacityMask>
+                                    <VisualBrush Visual="{Binding ElementName=mask}"/>
+                                </ScrollViewer.OpacityMask>
+                                
+                                <Grid Name="Cart">
+                                    <TextBlock HorizontalAlignment="Center" 
+                                                FontSize="30" 
+                                                Foreground="#B0927F"
+                                                Margin="0, 20, 0, 0"
+                                                Panel.ZIndex="10">
+                                                koszyk jest Pusty</TextBlock>
+                                </Grid>
+                            </ScrollViewer>
                         </Grid>
-                    </ScrollViewer>
+                    </Border>
+
+                    <!-- CheckOut info -->
+                    <Border Grid.Column="1" 
+                            Background="#17151a"
+                            CornerRadius="15"
+                            Margin="20">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                        
+                    </Border>
                 </Grid>
             </Grid>
+
         </Border>
     </Grid>
 </Window>
-    

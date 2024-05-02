@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace projekt
 {
@@ -142,6 +143,8 @@ namespace projekt
                 HorizontalAlignment= HorizontalAlignment.Right,
             };
 
+            addToCart.Click += (sender, e) => AddToCart_Click(sender, e, product);
+
             SvgViewbox icon = new SvgViewbox 
             { 
                 Width= 10,
@@ -173,10 +176,16 @@ namespace projekt
             Grid.SetRow(border, row);
             Grid.SetColumn(border, col);
 
-            // Add the grid to the main StackPanel
             productsGrid.Children.Add(border);
         }
 
+        private void ShoppingCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingCart cartPage = new ShoppingCart();
+            cartPage.Show();
+            this.Close();
+        }
+            
         private void searchQ_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)wrapText.Template.FindName("searchQ", wrapText);
@@ -184,5 +193,17 @@ namespace projekt
             Trace.WriteLine(textBoxValue);
             FillProducts(textBoxValue);
         }
+        private void AddToCart_Click(object sender, RoutedEventArgs e, Product product)
+        {
+            if(login.CurrentUser != null)
+            {
+                login.CurrentUser.addProduct(product);
+            }
+            else
+            {
+                MessageBox.Show("Zaloguj sie ty no");
+            }
+        }
+
     }
 }
