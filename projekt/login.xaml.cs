@@ -21,6 +21,8 @@ namespace projekt
     /// </summary>
     public partial class login : Window
     {
+        public static User? CurrentUser { get; private set; }
+
         public login()
         {
             InitializeComponent();
@@ -49,11 +51,17 @@ namespace projekt
                 String res = Conection.query($"SELECT * FROM users WHERE login = '{login}'");
                 Trace.WriteLine(res);
                 List<User> user = JsonConvert.DeserializeObject<List<User>>(res);
-                if (user != null)
+
+                if (user != null && user.Count() > 0)
                 {
                     if (PasswordHasher.Verify(pass, user[0].haslo))
                     {
+                        CurrentUser = user[0];
+                        shop shop = new shop();
+                        shop.Show();
+                        this.Close();
                         Trace.WriteLine("Zalogowanio");
+
                     } else
                     {
 
