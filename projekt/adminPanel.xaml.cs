@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Tls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace projekt
         public adminPanel()
         {
             InitializeComponent();
+            Stats();
         }
 
         private void TopBorder_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -32,6 +34,21 @@ namespace projekt
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            login login = new login();
+            login.Show();
+            this.Close();
+        }
+
+        private void Stats()
+        {
+            String zamowieniaIle = Conection.query("SELECT COUNT(*) orders FROM orders");
+            String uzytkownicyIle = Conection.query("SELECT COUNT(*) users FROM users");
+            String wykonaneZamowieniaIle;
+            String sredniaOcenauzytkownikow;
         }
     }
 }

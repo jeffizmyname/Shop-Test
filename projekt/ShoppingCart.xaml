@@ -117,23 +117,19 @@
                     <!-- Items Cart -->
                     <Border 
                         CornerRadius="15" 
-                        BorderBrush="Red" 
                         BorderThickness="1" 
                         Background="Transparent"
                         Margin="20, 20, 0, 20">
                         <Grid>
-                            <Border  Name="mask" Background="Transparent" CornerRadius="20" Panel.ZIndex="9"/>
-                            <ScrollViewer  Grid.Column="0" VerticalScrollBarVisibility="Hidden">
-                                <ScrollViewer.OpacityMask>
-                                    <VisualBrush Visual="{Binding ElementName=mask}"/>
-                                </ScrollViewer.OpacityMask>
-                                
-                                <Grid Name="Cart">
+                            <Border Background="Transparent" CornerRadius="20"/>
+                            <ScrollViewer  Grid.Column="0" VerticalScrollBarVisibility="Hidden" Panel.ZIndex="10">
+
+                                <Grid Name="Cart" Panel.ZIndex="9">
                                     <TextBlock HorizontalAlignment="Center" 
                                                 FontSize="30" 
                                                 Foreground="#B0927F"
                                                 Margin="0, 20, 0, 0"
-                                                Panel.ZIndex="10">
+                                                >
                                                 koszyk jest Pusty</TextBlock>
                                 </Grid>
                             </ScrollViewer>
@@ -146,15 +142,79 @@
                             CornerRadius="15"
                             Margin="20">
 
-                        <Grid>
+                        <Grid Name="Info">
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="55"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
+                            
+                            <!--Kopd rabatowy inmput-->
+                            
+                            <Grid Grid.Row="3" VerticalAlignment="Bottom">
+                                <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="10, 0"     
+                                 >
+                                    <TextBox 
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="userLogin" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="8, 5, 5, 5"
+                                             FontSize="15"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                    </TextBox>
+                                </Border>
+                                <TextBlock IsHitTestVisible="False" 
+                                           Text="Kod rabatowy" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="20, 0"
+                                           FontSize="15"
+                                           Foreground="#B0927F"
+                                           >
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=userLogin}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+
+                            <!--Kupuje button-->
+
+                            <Border
+                                Background="#36303b"
+                                CornerRadius="10"
+                                Height="60"
+                                Grid.Row="4"
+                                Margin="10"
+                                VerticalAlignment="Bottom">
+                                <Button Style="{StaticResource btnHover}"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Foreground="#B0927F"
+                                        FontSize="25"
+                                        Content="Kupuje"
+                                        Name="Submit">
+                                </Button>
+                            </Border>
                         </Grid>
+
                         
+
                     </Border>
                 </Grid>
             </Grid>

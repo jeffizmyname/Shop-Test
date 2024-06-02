@@ -88,6 +88,17 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
+                    <Button x:Name="Logout" 
+                            Style="{StaticResource btnHover}" 
+                            Grid.Column="0" 
+                            Background="Transparent" 
+                            Width="auto" 
+                            BorderBrush="Transparent"
+                            Click="LogoutBtn_Click"
+                            >
+                        <svgc:SvgViewbox Source="/Assets/logout.svg" Width="35" Height="35"/>
+                    </Button>
+
                     <Border Background="Transparent"
                             VerticalAlignment="Top"
                             Height="50"
@@ -101,7 +112,7 @@
                                Grid.Column="1" 
                                Panel.ZIndex="1"
                                Foreground="#FF87868A" FontFamily="Bahnschrift SemiBold"
-                               >Sklep</TextBlock>
+                               >Sklep Wszytko i Nic</TextBlock>
                     
                     <Button x:Name="ShoppingCartBtn" 
                             Style="{StaticResource btnHover}" 

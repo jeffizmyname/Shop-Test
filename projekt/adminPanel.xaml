@@ -62,6 +62,17 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
+                    <Button x:Name="Logout" 
+                            Style="{StaticResource btnHover}" 
+                            Grid.Column="0" 
+                            Background="Transparent" 
+                            Width="auto" 
+                            BorderBrush="Transparent"
+                            Click="LogoutBtn_Click"
+                            >
+                        <svgc:SvgViewbox Source="/Assets/logout.svg" Width="35" Height="35"/>
+                    </Button>
+
                     <Border Background="Transparent"
                             VerticalAlignment="Top"
                             Height="50"
@@ -105,14 +116,25 @@
                     </Grid>
 
                     <!-- Main -->
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                        <Grid  Margin="10, 0, 10, 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="500"/>
+                                <RowDefinition Height="500"/>
+                            </Grid.RowDefinitions>
 
-
-                    </Grid>
+                            <Border Grid.Row="0" Background="#17151a" CornerRadius="15" Margin="10">
+                                <TextBlock FontSize="30" 
+                                           TextAlignment="Center" 
+                                           >Zamówienia</TextBlock>
+                            </Border>
+                            <Border Grid.Row="1" Background="#17151a" CornerRadius="15" Margin="10">
+                                <TextBlock FontSize="30" 
+                                           TextAlignment="Center" 
+                                           >Dodaj Produkt</TextBlock>
+                            </Border>
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
             </Grid>
         </Border>

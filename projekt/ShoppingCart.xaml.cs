@@ -32,7 +32,12 @@ namespace projekt
 
         private void AddItems()
         {
+            double TotalPrice = 0.00;
             Cart.Children.Clear();
+            Info.Children.Remove(Info.FindName("All") as UIElement);
+            Info.Children.Remove(Info.FindName("Shipments") as UIElement);
+            Info.Children.Remove(Info.FindName("paymentPriceBlock") as UIElement);
+
             if (login.CurrentUser != null && products.Count == 0)
             {
                 TextBlock info = new TextBlock()
@@ -49,6 +54,7 @@ namespace projekt
                 for(int i = 0; i < products.Count; i++)
                 {
                     Cart.RowDefinitions.Add(new RowDefinition { Height = new GridLength(200) });
+                    TotalPrice += products[i].productPrice;
                 }
 
 
@@ -69,6 +75,8 @@ namespace projekt
                     Grid cardGrid = new Grid();
                     cardGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(262) });
                     cardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                    cardGrid.RowDefinitions.Add(new RowDefinition());
+                    cardGrid.RowDefinitions.Add(new RowDefinition());
 
                     card.Child = cardGrid;
 
@@ -82,14 +90,81 @@ namespace projekt
                         }
                     };
 
+                    TextBlock titleTextBlock = new TextBlock
+                    {
+                        Text = products[i].productName,
+                        TextWrapping = TextWrapping.Wrap,
+                        Margin = new Thickness(10, 20, 0, 0),
+                        FontWeight = FontWeights.Bold,
+                        FontSize = 14,
+                        Foreground = new BrushConverter().ConvertFrom("#dbb69e") as Brush
+                    };
+
+                    TextBlock priceTextBlock = new TextBlock
+                    {
+                        Text = $"{products[i].productPrice}zł",
+                        Margin = new Thickness(10, 10, 0, 0),
+                        FontWeight = FontWeights.Bold,
+                        FontSize = 16,
+                        Foreground = new BrushConverter().ConvertFrom("#B0927F") as Brush
+                    };
+
                     cardGrid.Children.Add(image);
+                    cardGrid.Children.Add(titleTextBlock);
+                    cardGrid.Children.Add(priceTextBlock);
 
                     Grid.SetColumn(image, 0);
+                    Grid.SetColumn(titleTextBlock, 1);
+                    Grid.SetColumn(priceTextBlock, 1);
+                    Grid.SetRow(titleTextBlock, 0);
+                    Grid.SetRow(priceTextBlock, 1);
+                    Grid.SetRowSpan(image, 2);
+
 
                     Grid.SetRow(card, i);
 
                     Cart.Children.Add(card);   
                 }
+
+                TextBlock paymentPriceBlock = new TextBlock
+                {
+                    Name= "paymentPriceBlock",
+                    Text = $"cena {TotalPrice.ToString("N2")} zł",
+                    Margin = new Thickness(10, 20, 0, 0),
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 20,
+                    Foreground = new BrushConverter().ConvertFrom("#dbb69e") as Brush
+                };
+
+                TextBlock Shipments = new TextBlock
+                {
+                    Name = "Shipments",
+                    Text = "+ 8,99 zł dostawa",
+                    Margin = new Thickness(10, 5, 0, 0),
+                    FontSize = 16,
+                    Foreground = new BrushConverter().ConvertFrom("#B0927F") as Brush
+                };
+
+
+                TextBlock All = new TextBlock
+                {
+                    Name= "All",
+                    Text = $"razem \n{(TotalPrice+8.99).ToString("N2")} zł",
+                    Margin = new Thickness(10, 10, 0, 0),
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 35,
+                    Foreground = new BrushConverter().ConvertFrom("#dbb69e") as Brush
+                };
+
+                Grid.SetRow(paymentPriceBlock, 0);
+                Grid.SetRow(Shipments, 1);
+                Grid.SetRow(All, 2);
+
+                Info.Children.Add(paymentPriceBlock);
+                Info.Children.Add(Shipments);
+                Info.Children.Add(All);
+
+
 
             }
         }

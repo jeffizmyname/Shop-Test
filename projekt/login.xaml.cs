@@ -57,8 +57,17 @@ namespace projekt
                     if (PasswordHasher.Verify(pass, user[0].haslo))
                     {
                         CurrentUser = user[0];
-                        shop shop = new shop();
-                        shop.Show();
+
+                        if (user[0].role == "A")
+                        {
+                            adminPanel panel = new adminPanel();
+                            panel.Show();
+                        } else
+                        {
+                            shop shop = new shop();
+                            shop.Show();
+                        }
+
                         this.Close();
                         Trace.WriteLine("Zalogowanio");
 

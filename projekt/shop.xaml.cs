@@ -66,6 +66,13 @@ namespace projekt
             System.Windows.Application.Current.Shutdown();
         }
 
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            login login = new login();
+            login.Show();
+            this.Close();
+        }
+
         private void AddProductCard(Product product, int row, int col)
         {
             Border border = new Border
@@ -205,5 +212,9 @@ namespace projekt
             }
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

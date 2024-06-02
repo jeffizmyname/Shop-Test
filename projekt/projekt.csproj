@@ -12,6 +12,7 @@
     <None Remove="Assets\back.svg" />
     <None Remove="Assets\basket.svg" />
     <None Remove="Assets\close.svg" />
+    <None Remove="Assets\logout.svg" />
     <None Remove="Assets\search.svg" />
     <None Remove="close.svg" />
   </ItemGroup>
@@ -33,6 +34,7 @@
     <Resource Include="Assets\back.svg" />
     <Resource Include="Assets\basket.svg" />
     <Resource Include="Assets\close.svg" />
+    <Resource Include="Assets\logout.svg" />
     <Resource Include="Assets\search.svg" />
     <Resource Include="close.svg" />
   </ItemGroup>
