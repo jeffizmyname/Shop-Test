@@ -12,6 +12,8 @@ namespace projekt
         public String Nazwisko { get; set; }
         public String Login { get; set; }
         public String haslo { get; set; }
+        public String role { get; set; }
+
 
         private List<Product> ShoppingCart = new List<Product>();
 
