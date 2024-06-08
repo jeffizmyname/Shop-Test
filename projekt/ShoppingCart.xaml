@@ -208,7 +208,7 @@
                                         Foreground="#B0927F"
                                         FontSize="25"
                                         Content="Kupuje"
-                                        Name="Submit">
+                                        Name="Submit" Click="Submit_Click">
                                 </Button>
                             </Border>
                         </Grid>

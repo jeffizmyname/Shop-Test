@@ -32,14 +32,16 @@ namespace projekt
 
         private void AddItems()
         {
+            //resset
             double TotalPrice = 0.00;
             Cart.Children.Clear();
             Info.Children.Remove(Info.FindName("All") as UIElement);
             Info.Children.Remove(Info.FindName("Shipments") as UIElement);
             Info.Children.Remove(Info.FindName("paymentPriceBlock") as UIElement);
 
-            if (login.CurrentUser != null && products.Count == 0)
-            {
+            
+            if (login.CurrentUser != null && products.Count == 0) // sprawdza czy produkty som
+            {//wypisujeze nie ma
                 TextBlock info = new TextBlock()
                 {
                     FontSize = 30,
@@ -49,7 +51,7 @@ namespace projekt
                     Text = "koszyk jest Pusty"
                 };
                 Cart.Children.Add(info);
-            } else
+            } else // wypisuje produkty
             {
                 for(int i = 0; i < products.Count; i++)
                 {
@@ -126,6 +128,8 @@ namespace projekt
                     Cart.Children.Add(card);   
                 }
 
+                //wypisanie ceny
+
                 TextBlock paymentPriceBlock = new TextBlock
                 {
                     Name= "paymentPriceBlock",
@@ -185,7 +189,11 @@ namespace projekt
             shop.Show();
             this.Close();
         }
-
-        
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            Checkout co = new Checkout();
+            co.Show();
+            this.Close();
+        }
     }
 }
