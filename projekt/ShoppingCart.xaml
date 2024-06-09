@@ -149,6 +149,7 @@
                                 <RowDefinition Height="100"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
                             
                             <!--Kopd rabatowy inmput-->
@@ -156,7 +157,7 @@
                             <Grid Grid.Row="3" VerticalAlignment="Bottom">
                                 <Border Background="#231f26"
                                         CornerRadius="10"
-                                        Margin="10, 0"     
+                                        Margin="10, 0, 10, 0"     
                                  >
                                     <TextBox 
                                              VerticalAlignment="Center" 
@@ -192,14 +193,33 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                             </Grid>
-
-                            <!--Kupuje button-->
+                            
+                            <!-- Szybka dostawa -->
 
                             <Border
                                 Background="#36303b"
                                 CornerRadius="10"
                                 Height="60"
                                 Grid.Row="4"
+                                Margin="10, 0, 10, 0"
+                                VerticalAlignment="Bottom">
+                                <Button Style="{StaticResource btnHover}"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Foreground="#B0927F"
+                                        FontSize="25"
+                                        Content="Szybka Dostawa"
+                                        Name="Dostawa" Click="Dostawa_Click">
+                                </Button>
+                            </Border>
+
+                            <!--Kupuje button-->
+                            
+                            <Border
+                                Background="#36303b"
+                                CornerRadius="10"
+                                Height="60"
+                                Grid.Row="5"
                                 Margin="10"
                                 VerticalAlignment="Bottom">
                                 <Button Style="{StaticResource btnHover}"

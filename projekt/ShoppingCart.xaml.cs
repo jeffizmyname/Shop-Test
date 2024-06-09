@@ -17,8 +17,10 @@ namespace projekt
     /// <summary>
     /// Logika interakcji dla klasy ShoppingCart.xaml
     /// </summary>
+    /// 
     public partial class ShoppingCart : Window
     {
+        public static Order? UserOrder { get; private set; } = new();
         List<Product> products = new List<Product>();
         public ShoppingCart()
         {
@@ -194,6 +196,14 @@ namespace projekt
             Checkout co = new Checkout();
             co.Show();
             this.Close();
+        }
+
+        private void Dostawa_Click(object sender, RoutedEventArgs e)
+        {
+            UserOrder.FastDelivery = !UserOrder.FastDelivery;
+            Dostawa.Foreground = UserOrder.FastDelivery ?
+                new BrushConverter().ConvertFrom("#00ff00") as Brush :
+                new BrushConverter().ConvertFrom("#ff0000") as Brush;
         }
     }
 }
