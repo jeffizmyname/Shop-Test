@@ -307,7 +307,8 @@
                             </Grid>
                         </Grid>
 
-                    </Grid>
+
+                        </Grid>
                 </Border>
 
                 <!-- Płatność -->
@@ -371,7 +372,190 @@
                         </Grid>
 
                         <Grid Grid.Row="2" Name="payMethode">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300"/>
+                                </Grid.RowDefinitions>
                             
+                                <!-- blik imput -->
+                                <Grid Name="blikGrid" Grid.Row="0" Height="100" VerticalAlignment="Top">
+                                    <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                        <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="Blik" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
+                                           Text="Kod Blik" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=Blik}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            
+                                <!-- Karta imput -->
+                                <Grid Name="kartaGrid" Grid.Row="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="100"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- numer -->
+                                    <Grid Grid.Row="0">
+                                        <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                            <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="KartNumer" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                            </TextBox>
+                                        </Border>
+                                        <TextBlock IsHitTestVisible="False" 
+                                           Text="Numer Karty" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=KartNumer}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+
+
+                                    <!-- name + ccv -->
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0">
+                                            <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15, 0, 15"
+                                 >
+                                                <TextBox Width="400"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="Cardholder" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                                </TextBox>
+                                            </Border>
+                                            <TextBlock IsHitTestVisible="False" 
+                                           Text="Imie Nazwisko" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=Cardholder}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+
+                                        <Grid Grid.Column="1">
+                                            <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                                <TextBox Width="110"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="ccv" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                                </TextBox>
+                                            </Border>
+                                            <TextBlock IsHitTestVisible="False" 
+                                           Text="ccv" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=ccv}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                         </Grid>
 
                         <!--Płace button-->
@@ -388,7 +572,7 @@
                                         Foreground="#B0927F"
                                         FontSize="25"
                                         Content="Zapłać"
-                                        Name="Submit">
+                                        Name="Submit" Click="Submit_Click">
                             </Button>
                         </Border>
                     </Grid>
