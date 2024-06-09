@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace projekt
 {
@@ -75,14 +76,29 @@ namespace projekt
                 productIds.Add(product.id);
             }
 
-            // Convert the list of IDs to a JSON array
             string prods = JsonSerializer.Serialize(productIds);
 
-            if(blikGrid.Visibility == Visibility.Visible) {
-
-            } else
+            if (string.IsNullOrEmpty(kraj) || string.IsNullOrEmpty(miastio) || string.IsNullOrEmpty(ulica) || string.IsNullOrEmpty(nr))
             {
+                MessageBox.Show("Wszystkie pola adresu muszą być wypełnione.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            if (blikGrid.Visibility == Visibility.Visible)
+            {
+                if (string.IsNullOrEmpty(Blik.Text))
+                {
+                    MessageBox.Show("Kod BLIK jest wymagany.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(KartNumer.Text) || string.IsNullOrEmpty(Cardholder.Text) || string.IsNullOrEmpty(ccv.Text))
+                {
+                    MessageBox.Show("Wszystkie pola danych karty są wymagane.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
 
             Trace.WriteLine($"INSERT INTO orders VALUES('', '{userOrder.userID}', '{userOrder.FastDelivery}', '{prods}', '{addr}')");

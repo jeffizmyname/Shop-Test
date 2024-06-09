@@ -46,9 +46,9 @@ namespace projekt
 
             Trace.WriteLine(hash);
 
-            if (login != "" && pass != "")
+            if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(pass))
             {
-                String res = Conection.query($"SELECT * FROM users WHERE login = '{login}'");
+                string res = Conection.query($"SELECT * FROM users WHERE login = '{login}'");
                 Trace.WriteLine(res);
                 List<User> user = JsonConvert.DeserializeObject<List<User>>(res);
 
@@ -62,28 +62,40 @@ namespace projekt
                         {
                             adminPanel panel = new adminPanel();
                             panel.Show();
-                        } else
+                        }
+                        else
                         {
                             shop shop = new shop();
                             shop.Show();
                         }
 
                         this.Close();
-                        Trace.WriteLine("Zalogowanio");
-
-                    } else
+                        Trace.WriteLine("Zalogowano");
+                    }
+                    else
                     {
-
+                        // Błąd hasła
+                        MessageBox.Show("Nieprawidłowe hasło. Spróbuj ponownie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-
+                    // Błąd loginu
+                    MessageBox.Show("Nie znaleziono użytkownika o podanym loginie. Spróbuj ponownie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            } else
-            {
-
             }
+            else
+            {
+                // Błąd wypełnienia pól
+                MessageBox.Show("Wszystkie pola są wymagane. Proszę wypełnić wszystkie dane.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RegisterRedirect_Click(object sender, RoutedEventArgs e)
+        {
+            register reg = new register();
+            reg.Show();
+            this.Close();
         }
     }
 }

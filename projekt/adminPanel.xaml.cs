@@ -120,7 +120,7 @@ namespace projekt
 
         private void add_Clicked(object sender, RoutedEventArgs e)
         {
-            if(name.Text != "" && desc.Text != ""  && price.Text != "") 
+            if(!string.IsNullOrEmpty(name.Text) && !string.IsNullOrEmpty(desc.Text) && !string.IsNullOrEmpty(price.Text)) 
             {
                 string res = Conection.query($"INSERT INTO products VALUES('', '{name.Text}', '{desc.Text}', '{price.Text}', 'https://via.placeholder.com/262x300')");
                 MessageBox.Show("Dodano produkt", "brawo", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.Yes);

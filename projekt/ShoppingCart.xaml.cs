@@ -202,6 +202,9 @@ namespace projekt
                 Checkout co = new Checkout();
                 co.Show();
                 this.Close();
+            } else
+            {
+                MessageBox.Show("Koszyk jest pusty. Proszę dodać produkty do koszyka.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
