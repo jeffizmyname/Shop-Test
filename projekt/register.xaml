@@ -98,35 +98,129 @@
                 <Border Background="#17151a"
                         CornerRadius="15"
                         Grid.Row="1"
-                        Margin="400, 50, 400, 100">
+                        Width="1000"
+                        Margin="170,50,170,100">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
                         <!-- Title -->
                         <TextBlock Foreground="#B0927F"
                                    HorizontalAlignment="Center"
                                    FontSize="90"
-                                   Margin="0, 20, 0, 0">
-                            Login
+                                   VerticalAlignment="Center">
+                            Register
                         </TextBlock>
 
-                        <!-- Inputs -->
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="2.8*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
+
+
+                            <!-- Inputs -->
                             <Grid Grid.Row="0">
-                                <Border Background="#231f26"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <!-- imie -->
+                                <Grid Grid.Row="0">
+                                    <Border Background="#231f26"
                                         CornerRadius="10"
                                         Margin="25, 15"
                                  >
-                                    <TextBox Width="550"  
+                                        <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="userName" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
+                                           Text="Imie" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=userName}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                                <!-- nazwisko -->
+                                <Grid Grid.Row="1">
+                                    <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                        <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="userSurname" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
+                                           Text="Nazwisko" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=userSurname}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                                <!-- login -->
+                                <Grid Grid.Row="2">
+                                    <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                        <TextBox Width="550"  
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Left" 
                                              x:Name="userLogin" 
@@ -138,9 +232,9 @@
                                              Style="{StaticResource noStyle}"
                                              CaretBrush="#B0927F"
                                       >
-                                    </TextBox>
-                                </Border>
-                                <TextBlock IsHitTestVisible="False" 
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
                                            Text="Login" 
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Left" 
@@ -148,24 +242,66 @@
                                            FontSize="30"
                                            Foreground="#B0927F"
                                            >
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=userLogin}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=userLogin}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
 
-                            <Grid Grid.Row="1">
-                                <Border Background="#231f26"
+                                <!-- pesel -->
+                                <Grid Grid.Row="3">
+                                    <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15"
+                                 >
+                                        <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="userPesel" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
+                                           Text="Pesel" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=userPesel}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                                <!-- Haslo -->
+                                <Grid Grid.Row="4">
+                                    <Border Background="#231f26"
                                         CornerRadius="10"
                                         Margin="25, 15">
-                                    <TextBox Width="550"
+                                        <TextBox Width="550"
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Left" 
                                              x:Name="userPass" 
@@ -178,57 +314,58 @@
                                              Style="{StaticResource noStyle}"
                                              CaretBrush="#B0927F"
                                       >
-                                    </TextBox>
-                                </Border>
-                                <TextBlock IsHitTestVisible="False" 
+                                        </TextBox>
+                                    </Border>
+                                    <TextBlock IsHitTestVisible="False" 
                                            Text="Hasło" 
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Left" 
                                            Margin="40, 15" 
                                            FontSize="30"
                                            Foreground="#B0927F">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=userPass}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=userPass}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
                             </Grid>
-                        </Grid>
 
 
-                        <!-- Buttons -->
-                        <Grid Grid.Row="2">
-                            <Border
+                            <!-- Buttons -->
+                            <Grid Grid.Row="1">
+                                <Border
                                 Background="#36303b"
                                 CornerRadius="10"
-                                Margin="30, 50, 30, 0"
+                                Margin="30, 30, 30, 0"
                                 Height="60"
                                 VerticalAlignment="Top">
-                                <Button Style="{StaticResource btnHover}"
+                                    <Button Style="{StaticResource btnHover}"
                                         Background="Transparent"
                                         BorderBrush="Transparent"
                                         Foreground="#B0927F"
                                         FontSize="25"
-                                        Content="Zaloguj się"
+                                        Content="Rejestracja"
                                         Name="Submit" Click="Submit_Click">
-                                </Button>
-                            </Border>
-                            <Button Style="{StaticResource btnHover}"
+                                    </Button>
+                                </Border>
+                                <Button Style="{StaticResource btnHover}"
                                     Background="Transparent"
                                     BorderBrush="Transparent"
                                     Foreground="#B0927F"
                                     VerticalAlignment="Bottom"
                                     FontSize="15"
                                     Margin="20"
-                                    Content="nie mam konta"
-                                    Name="RegisterRedirect">
-                            </Button>
+                                    Content="mam konto"
+                                    Name="LoginRedirect" Click="LoginRedirect_Click">
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Border>
