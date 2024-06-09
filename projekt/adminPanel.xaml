@@ -16,6 +16,32 @@
         Background="Transparent">
 
     <Window.Resources>
+        <Style x:Key="noStyle" TargetType="Control">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Control">
+                        <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                      Background="{TemplateBinding Background}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      CanContentScroll="true" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="Border" Value="Transparent" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="btnHover" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
@@ -109,10 +135,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Background="#17151a" CornerRadius="15" Margin="10"/>
-                        <Border Grid.Column="1" Background="#17151a" CornerRadius="15" Margin="10"/>
-                        <Border Grid.Column="2" Background="#17151a" CornerRadius="15" Margin="10"/>
-                        <Border Grid.Column="3" Background="#17151a" CornerRadius="15" Margin="10"/>
+                        <Border Padding="20" Grid.Column="0" Background="#17151a" CornerRadius="15" Margin="10" Name="stat1"/>
+                        <Border Padding="20" Grid.Column="1" Background="#17151a" CornerRadius="15" Margin="10" Name="stat2"/>
+                        <Border Padding="20" Grid.Column="2" Background="#17151a" CornerRadius="15" Margin="10" Name="stat3"/>
+                        <Border Padding="20" Grid.Column="3" Background="#17151a" CornerRadius="15" Margin="10" Name="stat4"/>
                     </Grid>
 
                     <!-- Main -->
@@ -121,17 +147,371 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="500"/>
                                 <RowDefinition Height="500"/>
+                                <RowDefinition Height="500"/>
+                                <RowDefinition Height="500"/>
                             </Grid.RowDefinitions>
-
+                            
+                            <!-- zamówienia -->
                             <Border Grid.Row="0" Background="#17151a" CornerRadius="15" Margin="10">
-                                <TextBlock FontSize="30" 
-                                           TextAlignment="Center" 
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock FontSize="30" 
+                                           TextAlignment="Center"
+                                               Foreground="#B0927F"
+                                               Grid.Row="0"
                                            >Zamówienia</TextBlock>
+                                    <ScrollViewer Margin="20, 0" Grid.Row="3" VerticalScrollBarVisibility="Hidden">
+                                        <Grid Name="ordersList">
+
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+
                             </Border>
+                            
+                            <!-- kreator produktów -->
                             <Border Grid.Row="1" Background="#17151a" CornerRadius="15" Margin="10">
-                                <TextBlock FontSize="30" 
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock FontSize="30" 
                                            TextAlignment="Center" 
+                                           Foreground="#B0927F"
+                                           Grid.Row="0"
                                            >Dodaj Produkt</TextBlock>
+                                    
+                                    <Grid Grid.Row="1">
+                                        <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15">
+                                            <TextBox Width="550"
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="name" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                            </TextBox>
+                                        </Border>
+                                        <TextBlock IsHitTestVisible="False" 
+                                           Text="Nazwa" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15" 
+                                           FontSize="30"
+                                           Foreground="#B0927F">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=name}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15">
+                                            <TextBox Width="550"
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="desc" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                            </TextBox>
+                                        </Border>
+                                        <TextBlock IsHitTestVisible="False" 
+                                           Text="Krótki opis" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15" 
+                                           FontSize="30"
+                                           Foreground="#B0927F">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=desc}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="3">
+                                        <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15">
+                                            <TextBox Width="550"
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="price" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                      >
+                                            </TextBox>
+                                        </Border>
+                                        <TextBlock IsHitTestVisible="False" 
+                                           Text="Cena" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15" 
+                                           FontSize="30"
+                                           Foreground="#B0927F">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=price}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Border Background="#36303b"
+                                            CornerRadius="10"
+                                            Margin="30, 50, 30, 0"
+                                            Height="60"
+                                            Grid.Row="4"
+                                            VerticalAlignment="Top">
+                                        <Button Style="{StaticResource btnHover}"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Foreground="#B0927F"
+                                        FontSize="25"
+                                        Content="Dodaj"
+                                        Name="Dodaj" Click="add_Clicked">
+                                        </Button>
+                                    </Border>
+                                </Grid>
+
+                            </Border>
+                            
+                            
+                            <!-- Wyszukiwarka uzytkowników-->
+                            <Border Grid.Row="2" Background="#17151a" CornerRadius="15" Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <TextBlock FontSize="30" 
+                                               TextAlignment="Center" 
+                                               Foreground="#B0927F"
+                                               Grid.Row="0"
+                                           >Wyszukiwarka</TextBlock>
+
+                                    <Grid Grid.Row="1" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border
+                                            Background="#36303b"
+                                            CornerRadius="10"
+                                            Height="60"
+                                            Width="200"
+                                            Grid.Column="0"
+                                            Margin="10"
+                                            VerticalAlignment="Top">
+                                            <Button Style="{StaticResource btnHover}"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Foreground="#B0927F"
+                                                    FontSize="25"
+                                                    Content="id"
+                                                    Name="id" Click="Filter_Clicked">
+                                            </Button>
+                                        </Border>
+
+                                        <Border
+                                            Background="#36303b"
+                                            CornerRadius="10"
+                                            Height="60"
+                                            Width="200"
+                                            Grid.Column="1"
+                                            Margin="10"
+                                            VerticalAlignment="Top">
+                                            <Button Style="{StaticResource btnHover}"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Foreground="#B0927F"
+                                                    FontSize="25"
+                                                    Content="imie"
+                                                    Name="imie" Click="Filter_Clicked">
+                                            </Button>
+                                        </Border>
+
+                                        <Border
+                                            Background="#36303b"
+                                            CornerRadius="10"
+                                            Height="60"
+                                            Width="200"
+                                            Grid.Column="2"
+                                            Margin="10"
+                                            VerticalAlignment="Top">
+                                            <Button Style="{StaticResource btnHover}"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Foreground="#B0927F"
+                                                    FontSize="25"
+                                                    Content="nazwisko"
+                                                    Name="nazwisko" Click="Filter_Clicked">
+                                            </Button>
+                                        </Border>
+
+                                        <Border
+                                            Background="#36303b"
+                                            CornerRadius="10"
+                                            Height="60"
+                                            Width="200"
+                                            Grid.Column="3"
+                                            Margin="10"
+                                            VerticalAlignment="Top">
+                                            <Button Style="{StaticResource btnHover}"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Foreground="#B0927F"
+                                                    FontSize="25"
+                                                    Content="login"
+                                                    Name="login" Click="Filter_Clicked">
+                                            </Button>
+                                        </Border>
+
+                                        <Border
+                                            Background="#36303b"
+                                            CornerRadius="10"
+                                            Height="60"
+                                            Width="200"
+                                            Grid.Column="4"
+                                            Margin="10"
+                                            VerticalAlignment="Top">
+                                            <Button Style="{StaticResource btnHover}"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Foreground="#B0927F"
+                                                    FontSize="25"
+                                                    Content="pesel"
+                                                    Name="pesel" Click="Filter_Clicked">
+                                            </Button>
+                                        </Border>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Border Background="#231f26"
+                                        CornerRadius="10"
+                                        Margin="25, 15">
+                                            <TextBox Width="550"  
+                                             VerticalAlignment="Center" 
+                                             HorizontalAlignment="Left" 
+                                             x:Name="value" 
+                                             Background="Transparent"
+                                             BorderBrush="Transparent"
+                                             Foreground="#B0927F"
+                                             Margin="10, 5, 5, 5"
+                                             FontSize="30"
+                                             Style="{StaticResource noStyle}"
+                                             CaretBrush="#B0927F"
+                                                     TextChanged ="Run_query"
+                                      >
+                                            </TextBox>
+                                        </Border>
+                                        <TextBlock IsHitTestVisible="False" 
+                                           Text="value" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40, 15"
+                                           FontSize="30"
+                                           Foreground="#B0927F"
+                                           >
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=value}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <ScrollViewer Margin="20, 0" Grid.Row="3" VerticalScrollBarVisibility="Hidden">
+                                        <Grid Name="results">
+
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="3" Background="#17151a" CornerRadius="15" Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock FontSize="30" 
+                                           TextAlignment="Center"
+                                               Foreground="#B0927F"
+                                               Grid.Row="0"
+                                           >Randomowy rekord</TextBlock>
+                                    <Border Background="#36303b"
+                                            CornerRadius="10"
+                                            Margin="30, 50, 30, 0"
+                                            Height="60"
+                                            Grid.Row="1"
+                                            VerticalAlignment="Top">
+                                        <Button Style="{StaticResource btnHover}"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Foreground="#B0927F"
+                                        FontSize="25"
+                                        Content="Generuj"
+                                        Name="Generuj" Click="random_Filed">
+                                        </Button>
+                                    </Border>
+                                    <Grid Margin="20, 0" Grid.Row="2" Name="randomrec">
+                                        
+                                    </Grid>
+                                </Grid>
                             </Border>
                         </Grid>
                     </ScrollViewer>

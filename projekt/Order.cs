@@ -10,8 +10,10 @@ namespace projekt
     {
         public int userID { get; set; }
         public bool FastDelivery { get; set; } = false;
-        public string? deliveryAddres { get; set; }
+        public string? shipAddres { get; set; }
         public List<Product> products { get; set; }
+
+        public string status { get; set; }
 
         public Order() { }
         public void Initialize(int userID, List<Product> products) { 
