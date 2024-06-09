@@ -148,14 +148,13 @@
                                 <RowDefinition Height="35"/>
                                 <RowDefinition Height="100"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
                             
                             <!--Kopd rabatowy inmput-->
                             
-                            <Grid Grid.Row="4" VerticalAlignment="Bottom">
+                            <Grid Grid.Row="3" VerticalAlignment="Bottom">
                                 <Border Background="#231f26"
                                         CornerRadius="10"
                                         Margin="10, 0, 10, 0"     
@@ -163,7 +162,7 @@
                                     <TextBox 
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Left" 
-                                             x:Name="rabat" 
+                                             x:Name="userLogin" 
                                              Background="Transparent"
                                              BorderBrush="Transparent"
                                              Foreground="#B0927F"
@@ -171,7 +170,6 @@
                                              FontSize="15"
                                              Style="{StaticResource noStyle}"
                                              CaretBrush="#B0927F"
-                                             TextChanged="rabat_TextChanged"
                                       >
                                     </TextBox>
                                 </Border>
@@ -187,7 +185,7 @@
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=rabat}" Value="">
+                                                <DataTrigger Binding="{Binding Text, ElementName=userLogin}" Value="">
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -201,9 +199,9 @@
                             <Border
                                 Background="#36303b"
                                 CornerRadius="10"
-                                Margin="10, 0, 10, 0"
                                 Height="60"
-                                Grid.Row="5"
+                                Grid.Row="4"
+                                Margin="10, 0, 10, 0"
                                 VerticalAlignment="Bottom">
                                 <Button Style="{StaticResource btnHover}"
                                         Background="Transparent"
@@ -221,7 +219,7 @@
                                 Background="#36303b"
                                 CornerRadius="10"
                                 Height="60"
-                                Grid.Row="6"
+                                Grid.Row="5"
                                 Margin="10"
                                 VerticalAlignment="Bottom">
                                 <Button Style="{StaticResource btnHover}"

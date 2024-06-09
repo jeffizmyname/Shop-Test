@@ -85,12 +85,7 @@ namespace projekt
 
             }
 
-            Trace.WriteLine($"INSERT INTO orders VALUES('', '{userOrder.userID}', '{userOrder.FastDelivery}', '{prods}', '{addr}')");
-            string res = Conection.query($"INSERT INTO orders VALUES('', '{userOrder.userID}', '{userOrder.FastDelivery}', '{prods}', '{addr}')");
-            Trace.WriteLine(res);
-            Final end = new Final();
-            end.Show();
-            this.Close();
+            Trace.WriteLine($"INSERT INTO orders VALUES(NULL, '{userOrder.userID}', '{userOrder.FastDelivery}', '{prods}', '{addr}')");
         }
     }
 }

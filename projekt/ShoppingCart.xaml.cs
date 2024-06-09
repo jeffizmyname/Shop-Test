@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,14 +21,12 @@ namespace projekt
     public partial class ShoppingCart : Window
     {
         public static Order? UserOrder { get; private set; } = new();
-        double TotalPrice = 0.00;
         List<Product> products = new List<Product>();
         public ShoppingCart()
         {
             InitializeComponent();
             if(login.CurrentUser != null && login.CurrentUser.getShoppingCart() != null)
             {
-                UserOrder.FastDelivery = false;
                 products = login.CurrentUser.getShoppingCart();
                 AddItems();
             }
@@ -39,7 +35,7 @@ namespace projekt
         private void AddItems()
         {
             //resset
-            TotalPrice = 0.00;
+            double TotalPrice = 0.00;
             Cart.Children.Clear();
             Info.Children.Remove(Info.FindName("All") as UIElement);
             Info.Children.Remove(Info.FindName("Shipments") as UIElement);
@@ -197,12 +193,9 @@ namespace projekt
         }
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            if(products.Count > 0)
-            {
-                Checkout co = new Checkout();
-                co.Show();
-                this.Close();
-            }
+            Checkout co = new Checkout();
+            co.Show();
+            this.Close();
         }
 
         private void Dostawa_Click(object sender, RoutedEventArgs e)
@@ -211,39 +204,6 @@ namespace projekt
             Dostawa.Foreground = UserOrder.FastDelivery ?
                 new BrushConverter().ConvertFrom("#00ff00") as Brush :
                 new BrushConverter().ConvertFrom("#ff0000") as Brush;
-        }
-
-        private void rabat_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            double discountValue = 0.00;
-            string rabatKod = rabat.Text;
-            string res = Conection.query($"SELECT * FROM discounts WHERE code = '{rabatKod}'");
-            if(res != "[]" && res != null)
-            {
-                List<Dictionary<string, object>> discounts = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(res);
-
-                foreach (var discount in discounts)
-                {
-                    string code = (string)discount["code"];
-                    discountValue = Convert.ToDouble(discount["discount"]);
-
-                    Trace.WriteLine($"Code: {code}, Discount: {discountValue}%");
-                }
-
-                TextBlock Discount = new TextBlock
-                {
-                    Name = "Discount",
-                    Text = $"- {discountValue}% rabatu",
-                    Margin = new Thickness(10, 5, 0, 0),
-                    FontSize = 16,
-                    Foreground = new BrushConverter().ConvertFrom("#B0927F") as Brush
-                };
-
-
-                Grid.SetRow(Discount, 3);
-                Info.Children.Add(Discount);
-            }
-
         }
     }
 }
