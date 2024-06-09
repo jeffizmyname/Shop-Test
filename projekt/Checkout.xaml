@@ -386,7 +386,7 @@
                                         <TextBox Width="550"  
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Left" 
-                                             x:Name="Blik" 
+                                             Name="Blik" 
                                              Background="Transparent"
                                              BorderBrush="Transparent"
                                              Foreground="#B0927F"
