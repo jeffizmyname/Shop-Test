@@ -8,6 +8,7 @@ namespace projekt
 {
     public class Product
     {
+        public int id { get; set; }
         public string productName { get; set; }
         public string productImg { get; set; }
         public float productPrice { get; set; }

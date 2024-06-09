@@ -8,14 +8,14 @@ namespace projekt
 {
     public class User
     {
-        public String Imie { get; set; }
-        public String Nazwisko { get; set; }
-        public String Login { get; set; }
-        public String haslo { get; set; }
-        public String role { get; set; }
+        public int id { get; set; }
+        public String? Imie { get; set; }
+        public String? Nazwisko { get; set; }
+        public String? Login { get; set; }
+        public String? haslo { get; set; }
+        public String? role { get; set; }
 
-
-        private List<Product> ShoppingCart = new List<Product>();
+        public List<Product> ShoppingCart = new List<Product>();
 
         public void addProduct(Product product)
         {
@@ -27,6 +27,6 @@ namespace projekt
             ShoppingCart.Remove(product);
         }
         public List<Product> getShoppingCart() { return ShoppingCart; }
-       
+
     }
 }
